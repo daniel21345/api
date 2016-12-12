@@ -1,19 +1,11 @@
-package main
+package wait
 import (
 	"fmt"
-	"github.com/garyburd/redigo/redis"
+	"github.com/daniel21345/wait/redis"
 	
 )
-var (
-	host = "127.0.0.1:6379"
-	conn,err = redis.Dial("tcp",host)
-	url string
-	)
-func main(){
-fmt.Println("input your url")
-fmt.Scanf("%s",&url)
-	addToKey(url)
-}
+
+
 func addToKey(str string){
 	ex,_:=redis.Bool(conn.Do("exists",str))
 	if ex == false{
